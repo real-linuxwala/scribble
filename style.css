@@ -1,0 +1,150 @@
+:root {
+  --bg: #1e1f22;
+  --panel: #2b2d31;
+  --panel-2: #34363c;
+  --border: #3f4248;
+  --text: #e6e7e9;
+  --muted: #9aa0a6;
+  --accent: #4f8cff;
+  --accent-2: #3a6fd6;
+  --danger: #e0556b;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Top bar */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+.brand { font-weight: 700; font-size: 18px; letter-spacing: 0.2px; }
+.spacer { flex: 1; }
+
+.bg-switch { display: flex; align-items: center; gap: 8px; }
+.bg-label { color: var(--muted); font-size: 13px; }
+.bg-btn {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  padding: 0;
+  transition: transform .12s ease, border-color .12s ease;
+}
+.bg-btn[data-bg="#ffffff"] { background: #ffffff; }
+.bg-btn[data-bg="#9aa0a6"] { background: #9aa0a6; }
+.bg-btn[data-bg="#000000"] { background: #000000; }
+.bg-btn:hover { transform: scale(1.1); }
+.bg-btn.is-active { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(79,140,255,.3); }
+
+/* Layout */
+.layout { display: flex; height: calc(100% - 49px); }
+
+/* Toolbar */
+.toolbar {
+  width: 200px;
+  flex-shrink: 0;
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+.tool-group { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.tool {
+  aspect-ratio: 1;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .12s, border-color .12s;
+}
+.tool:hover { background: #3d4046; }
+.tool.is-active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.divider { height: 1px; background: var(--border); margin: 2px 0; }
+
+.field { display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--muted); }
+.field span b { color: var(--text); }
+.field input[type="color"] {
+  width: 100%; height: 38px; padding: 0; border: 1px solid var(--border);
+  border-radius: 8px; background: var(--panel-2); cursor: pointer;
+}
+.field input[type="range"] { width: 100%; accent-color: var(--accent); cursor: pointer; }
+
+.swatches { display: grid; grid-template-columns: repeat(8, 1fr); gap: 5px; }
+.swatch {
+  aspect-ratio: 1; border-radius: 5px; border: 1px solid rgba(255,255,255,.15);
+  cursor: pointer; padding: 0;
+}
+.swatch:hover { transform: scale(1.12); }
+
+.action {
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 9px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .12s, border-color .12s, opacity .12s;
+}
+.action:hover { background: #3d4046; }
+.action:disabled { opacity: .4; cursor: not-allowed; }
+.tool-group .action { padding: 9px 4px; }
+.action.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.action.primary:hover { background: var(--accent-2); }
+.action.danger:hover { background: var(--danger); border-color: var(--danger); color: #fff; }
+
+/* Stage */
+.stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, #26272b, var(--bg));
+}
+.canvas-wrap {
+  position: relative;
+  border-radius: 6px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.45);
+  line-height: 0;
+}
+.canvas-wrap canvas {
+  position: absolute;
+  top: 0; left: 0;
+  border-radius: 6px;
+  touch-action: none;
+}
+#bgCanvas { position: relative; }
+#drawCanvas { cursor: crosshair; }
+
+@media (max-width: 720px) {
+  .toolbar { width: 150px; }
+  .tool-group { grid-template-columns: repeat(3, 1fr); }
+}

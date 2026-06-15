@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Scribble — a simple sketch pad</title>
+  <meta name="description" content="A clean, fast online sketch pad. Draw freehand, add shapes, pick colors, and export your art. No checkered background — choose white, gray, or black." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">✏️ Scribble</div>
+    <div class="spacer"></div>
+    <div class="bg-switch" role="group" aria-label="Canvas background">
+      <span class="bg-label">Background</span>
+      <button class="bg-btn is-active" data-bg="#ffffff" title="White background" aria-label="White background"></button>
+      <button class="bg-btn" data-bg="#9aa0a6" title="Gray background" aria-label="Gray background"></button>
+      <button class="bg-btn" data-bg="#000000" title="Black background" aria-label="Black background"></button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="toolbar" aria-label="Tools">
+      <div class="tool-group" role="group" aria-label="Drawing tools">
+        <button class="tool is-active" data-tool="pen" title="Pen (B)">✒️</button>
+        <button class="tool" data-tool="eraser" title="Eraser (E)">🩹</button>
+        <button class="tool" data-tool="line" title="Line (L)">╱</button>
+        <button class="tool" data-tool="rect" title="Rectangle (R)">▭</button>
+        <button class="tool" data-tool="ellipse" title="Ellipse (O)">◯</button>
+      </div>
+
+      <div class="divider"></div>
+
+      <label class="field">
+        <span>Color</span>
+        <input type="color" id="color" value="#1a1a1a" />
+      </label>
+
+      <div class="swatches" id="swatches"></div>
+
+      <label class="field">
+        <span>Size <b id="sizeVal">6</b></span>
+        <input type="range" id="size" min="1" max="80" value="6" />
+      </label>
+
+      <label class="field">
+        <span>Opacity <b id="opacityVal">100%</b></span>
+        <input type="range" id="opacity" min="5" max="100" value="100" />
+      </label>
+
+      <div class="divider"></div>
+
+      <div class="tool-group" role="group" aria-label="Actions">
+        <button class="action" id="undo" title="Undo (Ctrl+Z)">↶ Undo</button>
+        <button class="action" id="redo" title="Redo (Ctrl+Y)">↷ Redo</button>
+      </div>
+      <button class="action danger" id="clear" title="Clear canvas">🗑 Clear</button>
+      <button class="action primary" id="download" title="Download PNG">⬇ Save PNG</button>
+    </aside>
+
+    <section class="stage" id="stage">
+      <div class="canvas-wrap" id="canvasWrap">
+        <canvas id="bgCanvas"></canvas>
+        <canvas id="drawCanvas"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
