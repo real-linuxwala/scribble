@@ -1,6 +1,6 @@
 # Scribble ✏️
 
-A clean, fast online sketch pad — inspired by [sketch.io/sketchpad](https://sketch.io/sketchpad/), but **without the checkered transparency background**. Pick a solid **white, gray, or black** canvas instead.
+A clean, fast online sketch pad — but **without the checkered transparency background**. Pick a solid **white, gray, or black** canvas instead.
 
 No build step, no dependencies. Just static HTML/CSS/JS.
 
